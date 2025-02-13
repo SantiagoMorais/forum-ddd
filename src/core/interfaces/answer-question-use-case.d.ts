@@ -1,5 +1,7 @@
+import { UniqueEntityId } from "../entities/unique-entity-id";
+
 export interface IAnswerQuestionUseCaseRequest {
   instructorId: string;
-  questionId: string;
+  questionId: UniqueEntityId;
   content: string;
 }

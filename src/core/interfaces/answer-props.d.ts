@@ -1,5 +1,9 @@
+import { UniqueEntityId } from "../entities/unique-entity-id";
+
 export interface IAnswerProps {
   content: string;
-  authorId: string;
-  questionId: string;
+  authorId: UniqueEntityId;
+  questionId: UniqueEntityId;
+  createdAt: Date;
+  updatedAt?: Date;
 }
