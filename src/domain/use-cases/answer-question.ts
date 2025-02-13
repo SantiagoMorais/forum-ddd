@@ -1,8 +1,11 @@
 import { IAnswerQuestionUseCaseRequest } from "../../core/interfaces/answer-question-use-case";
+import { AnswersRepository } from "../../repositories/answers-repository";
 import { Answer } from "../entities/answer";
 
 export class AnswerQuestionUseCase {
-  execute({
+  constructor(private answersRepository: AnswersRepository) {}
+
+  async execute({
     content,
     instructorId,
     questionId,
@@ -12,6 +15,8 @@ export class AnswerQuestionUseCase {
       authorId: instructorId,
       questionId,
     });
+
+    await this.answersRepository.create(answer);
 
     return answer;
   }
