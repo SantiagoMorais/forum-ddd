@@ -1,7 +1,7 @@
-import { Entity } from "../../core/entities/entity";
-import { UniqueEntityId } from "../../core/entities/unique-entity-id";
-import { IAnswerProps } from "../../core/interfaces/answer-props";
-import { Optional } from "../../core/types/optional";
+import { Entity } from "@/core/entities/entity";
+import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { IAnswerProps } from "@/core/interfaces/answer-props";
+import { Optional } from "@/core/types/optional";
 
 export class Answer extends Entity<IAnswerProps> {
   get content() {
