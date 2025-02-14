@@ -7,7 +7,7 @@ export class Answer extends Entity<IAnswerProps> {
   get content() {
     return this.props.content;
   }
-  
+
   get authorId() {
     return this.props.authorId;
   }
@@ -22,6 +22,19 @@ export class Answer extends Entity<IAnswerProps> {
 
   get updatedAt() {
     return this.props.updatedAt;
+  }
+
+  get excerpt() {
+    return this.content.substring(0, 120).trimEnd().concat("...");
+  }
+
+  private touch() {
+    this.props.updatedAt = new Date();
+  }
+
+  set content(content: string) {
+    this.props.content = content;
+    this.touch();
   }
 
   static create(
