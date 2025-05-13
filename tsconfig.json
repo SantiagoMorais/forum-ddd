@@ -13,9 +13,10 @@
     "skipLibCheck": true,
     "moduleResolution": "node16",
     "rootDir": "./",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"]
     },
     "types": ["vitest/globals"]
   }
