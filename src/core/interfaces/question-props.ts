@@ -1,4 +1,4 @@
-import { Slug } from "../../domain/entities/value-objects/slug";
+import { Slug } from "../../domain/forum/enterprise/entities/value-objects/slug";
 import { UniqueEntityId } from "../entities/unique-entity-id";
 
 export interface IQuestionProps {
