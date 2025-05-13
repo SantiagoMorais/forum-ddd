@@ -1,11 +1,18 @@
 # DDD (Domain-driven Design)
 
-Design Dirigido à Domínio
+Design Dirigido a Domínio
 
 ## Domínio
 
-- Domain Experts
+- Domain Experts (Precisamos entender as necessidades dos experts do domínio)
+    - Conversa gera uma linguagem ubíqua
 - Linguagem ubíqua
+    - O Dev e o expert agora "falam a mesma língua"
+    - Um "usuário" pode ser chamado, pelo expert, de:
+        - Cliente
+        - Paciente
+        - Fornecedor
+        - Atendente, etc
 
 - Agregados
 - Value Objects
