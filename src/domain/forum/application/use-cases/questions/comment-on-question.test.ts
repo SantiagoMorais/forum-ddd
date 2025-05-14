@@ -30,7 +30,7 @@ describe("Comment on Question", () => {
       content: "test commentary",
     });
 
-    expect(inMemoryQuestionCommentsRepository.items[0].content).toEqual(
+    expect(inMemoryQuestionCommentsRepository.comments[0].content).toEqual(
       "test commentary"
     );
   });
