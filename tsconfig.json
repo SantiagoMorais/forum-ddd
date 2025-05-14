@@ -8,6 +8,9 @@
     "module": "node16",
     "target": "es2022",
 
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
