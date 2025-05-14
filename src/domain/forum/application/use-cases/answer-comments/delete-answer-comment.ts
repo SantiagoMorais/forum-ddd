@@ -3,6 +3,9 @@ import {
   IDeleteAnswerCommentUseCaseResponse,
 } from "@/core/interfaces/delete-answer-comment-use-case";
 import { AnswerCommentsRepository } from "../../repositories/answer-comments-repository";
+import { left, right } from "@/core/either";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../errors/not-allowed-error";
 
 export class DeleteAnswerCommentUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
@@ -14,13 +17,14 @@ export class DeleteAnswerCommentUseCase {
     const answerComment =
       await this.answerCommentsRepository.findById(answerCommentId);
 
-    if (!answerComment) throw new Error("Answer comment not found.");
+    if (!answerComment)
+      return left(new ResourceNotFoundError("Answer not found."));
 
     if (answerComment.authorId.toValue() !== authorId)
-      throw new Error("Not allowed");
+      return left(new NotAllowedError());
 
     await this.answerCommentsRepository.delete(answerComment);
 
-    return {};
+    return right({});
   }
 }
