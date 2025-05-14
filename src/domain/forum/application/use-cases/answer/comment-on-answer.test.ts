@@ -28,7 +28,7 @@ describe("Comment on Answer", () => {
       content: "test commentary",
     });
 
-    expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual(
+    expect(inMemoryAnswerCommentsRepository.comments[0].content).toEqual(
       "test commentary"
     );
   });
