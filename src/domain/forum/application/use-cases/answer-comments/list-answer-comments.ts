@@ -3,6 +3,7 @@ import {
   IListAnswerCommentsUseCaseResponse,
 } from "@/core/interfaces/list-answer-comments-use-case";
 import { AnswerCommentsRepository } from "../../repositories/answer-comments-repository";
+import { right } from "@/core/either";
 
 export class ListAnswerCommentsUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
@@ -16,6 +17,6 @@ export class ListAnswerCommentsUseCase {
         page,
       });
 
-    return { answerComments };
+    return right({ answerComments });
   }
 }

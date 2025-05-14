@@ -1,10 +1,14 @@
 import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment";
+import { Either } from "../either";
 
 export interface IListAnswerCommentsUseCaseRequest {
   answerId: string;
   page: number;
 }
 
-export interface IListAnswerCommentsUseCaseResponse {
-  answerComments: Array<AnswerComment>;
-}
+export type IListAnswerCommentsUseCaseResponse = Either<
+  null,
+  {
+    answerComments: Array<AnswerComment>;
+  }
+>;
