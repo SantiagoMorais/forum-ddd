@@ -3,6 +3,9 @@ import {
   IDeleteQuestionUseCaseResponse,
 } from "@/core/interfaces/delete-question-use-case";
 import { QuestionsRepository } from "../../repositories/questions-repository";
+import { left, right } from "@/core/either";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../errors/not-allowed-error";
 
 export class DeleteQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -13,11 +16,12 @@ export class DeleteQuestionUseCase {
   }: IDeleteQuestionUseCaseRequest): Promise<IDeleteQuestionUseCaseResponse> {
     const question = await this.questionsRepository.findById(questionId);
 
-    if (!question) throw new Error("Question not found.");
+    if (!question)
+      return left(new ResourceNotFoundError("Question not found."));
     if (authorId !== question.authorId.toValue())
-      throw new Error("Not allowed");
+      return left(new NotAllowedError("Not allowed"));
 
     await this.questionsRepository.delete(question);
-    return {};
+    return right({});
   }
 }
