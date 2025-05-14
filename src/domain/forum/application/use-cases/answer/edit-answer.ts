@@ -3,6 +3,9 @@ import {
   IEditAnswerUseCaseResponse,
 } from "@/core/interfaces/edit-answer-use-case";
 import { AnswersRepository } from "../../repositories/answers-repository";
+import { left, right } from "@/core/either";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../errors/not-allowed-error";
 
 export class EditAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -14,12 +17,13 @@ export class EditAnswerUseCase {
   }: IEditAnswerUseCaseRequest): Promise<IEditAnswerUseCaseResponse> {
     const answer = await this.answersRepository.findById(answerId);
 
-    if (!answer) throw new Error("Answer not found.");
-    if (authorId !== answer.authorId.toValue()) throw new Error("Not allowed");
+    if (!answer) return left(new ResourceNotFoundError("Answer not found."));
+    if (authorId !== answer.authorId.toValue())
+      return left(new NotAllowedError());
 
     answer.content = content;
 
     await this.answersRepository.save(answer);
-    return { answer };
+    return right({ answer });
   }
 }
