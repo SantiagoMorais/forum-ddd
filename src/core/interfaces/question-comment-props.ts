@@ -1,9 +1,6 @@
 import { UniqueEntityId } from "../entities/unique-entity-id";
+import { ICommentProps } from "./comment-props";
 
-export interface IQuestionCommentProps {
-  authorId: UniqueEntityId;
+export interface IQuestionCommentProps extends ICommentProps {
   questionId: UniqueEntityId;
-  content: string;
-  createdAt: Date;
-  updatedAt?: Date;
 }
