@@ -1,4 +1,5 @@
 import { Question } from "@/domain/forum/enterprise/entities/question";
+import { Either } from "../either";
 
 export interface ICreateQuestionUseCaseRequest {
   authorId: string;
@@ -6,6 +7,9 @@ export interface ICreateQuestionUseCaseRequest {
   content: string;
 }
 
-export interface ICreateQuestionUseCaseResponse {
-  question: Question;
-}
+export type ICreateQuestionUseCaseResponse = Either<
+  null,
+  {
+    question: Question;
+  }
+>;

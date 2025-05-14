@@ -5,6 +5,7 @@ import {
 import { Question } from "../../../enterprise/entities/question";
 import { QuestionsRepository } from "../../repositories/questions-repository";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { right } from "@/core/either";
 
 export class CreateQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -20,6 +21,6 @@ export class CreateQuestionUseCase {
       title,
     });
     await this.questionsRepository.create(question);
-    return { question };
+    return right({ question });
   }
 }

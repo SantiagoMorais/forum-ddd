@@ -11,13 +11,15 @@ describe("Create Question Use Case", () => {
   });
 
   it("should be able to create a question", async () => {
-    const { question } = await sut.execute({
+    const { value } = await sut.execute({
       authorId: "1",
       content: "What is the best programming language?",
       title: "Best programming language",
     });
 
-    expect(question.authorId).toBeTruthy();
-    expect(inMemoryQuestionsRepository.questions[0].id).toEqual(question.id);
+    expect(value?.question.authorId).toBeTruthy();
+    expect(inMemoryQuestionsRepository.questions[0].id).toEqual(
+      value?.question.id
+    );
   });
 });
