@@ -28,10 +28,10 @@ describe("List Recent Questions Use Case", () => {
       })
     );
 
-    const { questions } = await sut.execute({ page: 1 });
+    const { value } = await sut.execute({ page: 1 });
 
-    expect(questions).toHaveLength(3);
-    expect(questions).toEqual([
+    expect(value?.questions).toHaveLength(3);
+    expect(value?.questions).toEqual([
       expect.objectContaining({ createdAt: new Date(2025, 0, 22) }),
       expect.objectContaining({ createdAt: new Date(2025, 0, 21) }),
       expect.objectContaining({ createdAt: new Date(2025, 0, 20) }),
@@ -43,8 +43,8 @@ describe("List Recent Questions Use Case", () => {
       await inMemoryQuestionsRepository.create(makeQuestion());
     }
 
-    const { questions } = await sut.execute({ page: 2 });
+    const { value } = await sut.execute({ page: 2 });
 
-    expect(questions).toHaveLength(2);
+    expect(value?.questions).toHaveLength(2);
   });
 });

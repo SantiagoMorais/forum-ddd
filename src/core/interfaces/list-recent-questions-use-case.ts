@@ -1,9 +1,13 @@
 import { Question } from "@/domain/forum/enterprise/entities/question";
+import { Either } from "../either";
 
 export interface IListRecentQuestionsUseCaseRequest {
   page: number;
 }
 
-export interface IListRecentQuestionsUseCaseResponse {
-  questions: Array<Question>;
-}
+export type IListRecentQuestionsUseCaseResponse = Either<
+  null,
+  {
+    questions: Array<Question>;
+  }
+>;

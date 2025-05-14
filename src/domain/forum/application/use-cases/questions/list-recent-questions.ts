@@ -3,6 +3,7 @@ import {
   IListRecentQuestionsUseCaseResponse,
 } from "@/core/interfaces/list-recent-questions-use-case";
 import { QuestionsRepository } from "../../repositories/questions-repository";
+import { right } from "@/core/either";
 
 export class ListRecentQuestionsUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -11,6 +12,6 @@ export class ListRecentQuestionsUseCase {
     page,
   }: IListRecentQuestionsUseCaseRequest): Promise<IListRecentQuestionsUseCaseResponse> {
     const questions = await this.questionsRepository.findManyRecent({ page });
-    return { questions };
+    return right({ questions });
   }
 }
