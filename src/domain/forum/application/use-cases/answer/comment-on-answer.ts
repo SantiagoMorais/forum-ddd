@@ -2,7 +2,7 @@ import {
   ICommentOnAnswerUseCaseRequest,
   ICommentOnAnswerUseCaseResponse,
 } from "@/core/interfaces/comment-on-answer-use-case";
-import { AnswerCommentsRepository } from "../../repositories/answer-comments";
+import { AnswerCommentsRepository } from "../../repositories/answer-comments-repository";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { AnswersRepository } from "../../repositories/answers-repository";
 import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment";
