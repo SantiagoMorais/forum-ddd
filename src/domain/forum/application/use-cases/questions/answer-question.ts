@@ -4,7 +4,7 @@ import {
   IAnswerQuestionUseCaseResponse,
 } from "@/core/interfaces/answer-question-use-case";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
-import { AnswersRepository } from "../repositories/answers-repository";
+import { AnswersRepository } from "../../repositories/answers-repository";
 
 export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnswersRepository) {}

@@ -2,8 +2,8 @@ import {
   ICreateQuestionUseCaseRequest,
   ICreateQuestionUseCaseResponse,
 } from "@/core/interfaces/create-question-use-case";
-import { Question } from "../../enterprise/entities/question";
-import { QuestionsRepository } from "../repositories/questions-repository";
+import { Question } from "../../../enterprise/entities/question";
+import { QuestionsRepository } from "../../repositories/questions-repository";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 
 export class CreateQuestionUseCase {

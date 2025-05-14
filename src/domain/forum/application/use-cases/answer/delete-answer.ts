@@ -2,7 +2,7 @@ import {
   IDeleteAnswerUseCaseRequest,
   IDeleteAnswerUseCaseResponse,
 } from "@/core/interfaces/delete-answer-use-case";
-import { AnswersRepository } from "../repositories/answers-repository";
+import { AnswersRepository } from "../../repositories/answers-repository";
 
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
