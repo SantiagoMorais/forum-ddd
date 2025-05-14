@@ -4,6 +4,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "@test/factories/make-answer";
 import { InMemoryQuestionsRepository } from "@test/repositories/in-memory-questions-repository";
 import { DeleteAnswerUseCase } from "./delete-answer";
+import { NotAllowedError } from "../errors/not-allowed-error";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
@@ -16,7 +17,7 @@ describe("Delete Answer Use Case", () => {
     sut = new DeleteAnswerUseCase(inMemoryAnswersRepository);
   });
 
-  it("should be able to delete a answer", async () => {
+  it("should be able to delete an answer", async () => {
     const question = makeQuestion({}, new UniqueEntityId("question-id"));
     await inMemoryQuestionsRepository.create(question);
 
@@ -34,7 +35,7 @@ describe("Delete Answer Use Case", () => {
     expect(inMemoryAnswersRepository.answers).toHaveLength(0);
   });
 
-  it("should not be able to delete a answer from another user", async () => {
+  it("should not be able to delete an answer from another user", async () => {
     const question = makeQuestion({}, new UniqueEntityId("question-id"));
     await inMemoryQuestionsRepository.create(question);
 
@@ -44,12 +45,12 @@ describe("Delete Answer Use Case", () => {
     );
     await inMemoryAnswersRepository.create(answer);
 
-    await expect(
-      async () =>
-        await sut.execute({
-          answerId: "answer-id",
-          authorId: "different-author-id",
-        })
-    ).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      answerId: "answer-id",
+      authorId: "different-author-id",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
