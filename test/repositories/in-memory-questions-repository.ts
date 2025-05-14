@@ -16,4 +16,15 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     if (!question) return null;
     return question;
   }
+
+  async delete(question: Question): Promise<void> {
+    const questionIndex = this.questions.findIndex((q) => q.id === question.id);
+    this.questions.splice(questionIndex, 1);
+  }
+
+  async findById(id: string): Promise<Question | null> {
+    const question = this.questions.find((q) => q.id.toString() === id);
+    if (!question) return null;
+    return question;
+  }
 }
