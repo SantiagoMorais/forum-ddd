@@ -3,6 +3,7 @@ import {
   IListQuestionAnswersUseCaseResponse,
 } from "@/core/interfaces/list-question-answers-use-case";
 import { AnswersRepository } from "../../repositories/answers-repository";
+import { right } from "@/core/either";
 
 export class ListQuestionAnswersUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -15,6 +16,6 @@ export class ListQuestionAnswersUseCase {
       questionId,
       { page }
     );
-    return { answers };
+    return right({ answers });
   }
 }

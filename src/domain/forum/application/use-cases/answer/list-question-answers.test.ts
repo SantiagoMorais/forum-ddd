@@ -23,12 +23,12 @@ describe("List Question Answers Use Case", () => {
       makeAnswer({ questionId: new UniqueEntityId("question-1") })
     );
 
-    const { answers } = await sut.execute({
+    const { value } = await sut.execute({
       questionId: "question-1",
       page: 1,
     });
 
-    expect(answers).toHaveLength(3);
+    expect(value?.answers).toHaveLength(3);
   });
 
   it("should be able to paginated question answers list", async () => {
@@ -38,11 +38,11 @@ describe("List Question Answers Use Case", () => {
       );
     }
 
-    const { answers } = await sut.execute({
+    const { value } = await sut.execute({
       page: 2,
       questionId: "question-1",
     });
 
-    expect(answers).toHaveLength(2);
+    expect(value?.answers).toHaveLength(2);
   });
 });
