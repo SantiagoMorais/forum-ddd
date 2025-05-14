@@ -3,6 +3,9 @@ import {
   IEditQuestionUseCaseResponse,
 } from "@/core/interfaces/edit-question-use-case";
 import { QuestionsRepository } from "../../repositories/questions-repository";
+import { left, right } from "@/core/either";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../errors/not-allowed-error";
 
 export class EditQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -15,14 +18,15 @@ export class EditQuestionUseCase {
   }: IEditQuestionUseCaseRequest): Promise<IEditQuestionUseCaseResponse> {
     const question = await this.questionsRepository.findById(questionId);
 
-    if (!question) throw new Error("Question not found.");
+    if (!question)
+      return left(new ResourceNotFoundError("Question not found."));
     if (authorId !== question.authorId.toValue())
-      throw new Error("Not allowed");
+      return left(new NotAllowedError("Not allowed"));
 
     question.title = title;
     question.content = content;
 
     await this.questionsRepository.save(question);
-    return { question };
+    return right({ question });
   }
 }

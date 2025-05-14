@@ -1,4 +1,7 @@
+import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
+import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
 import { Question } from "@/domain/forum/enterprise/entities/question";
+import { Either } from "../either";
 
 export interface IEditQuestionUseCaseRequest {
   authorId: string;
@@ -7,6 +10,9 @@ export interface IEditQuestionUseCaseRequest {
   content: string;
 }
 
-export interface IEditQuestionUseCaseResponse {
-  question: Question;
-}
+export type IEditQuestionUseCaseResponse = Either<
+  ResourceNotFoundError | NotAllowedError,
+  {
+    question: Question;
+  }
+>;
