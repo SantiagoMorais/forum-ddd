@@ -23,6 +23,6 @@ export class EditQuestionUseCase {
     question.content = content;
 
     await this.questionsRepository.save(question);
-    return {};
+    return { question };
   }
 }

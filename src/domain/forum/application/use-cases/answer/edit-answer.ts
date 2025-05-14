@@ -20,6 +20,6 @@ export class EditAnswerUseCase {
     answer.content = content;
 
     await this.answersRepository.save(answer);
-    return {};
+    return { answer };
   }
 }

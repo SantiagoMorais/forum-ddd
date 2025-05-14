@@ -1,3 +1,5 @@
+import { Question } from "@/domain/forum/enterprise/entities/question";
+
 export interface IEditQuestionUseCaseRequest {
   authorId: string;
   questionId: string;
@@ -5,4 +7,6 @@ export interface IEditQuestionUseCaseRequest {
   content: string;
 }
 
-export interface IEditQuestionUseCaseResponse {}
+export interface IEditQuestionUseCaseResponse {
+  question: Question;
+}
