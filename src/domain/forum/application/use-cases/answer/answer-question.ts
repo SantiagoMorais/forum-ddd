@@ -5,6 +5,7 @@ import {
 } from "@/core/interfaces/answer-question-use-case";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 import { AnswersRepository } from "../../repositories/answers-repository";
+import { right } from "@/core/either";
 
 export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -22,6 +23,6 @@ export class AnswerQuestionUseCase {
 
     await this.answersRepository.create(answer);
 
-    return { answer };
+    return right({ answer });
   }
 }

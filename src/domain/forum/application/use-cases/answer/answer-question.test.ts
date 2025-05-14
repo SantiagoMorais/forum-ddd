@@ -11,13 +11,13 @@ describe("Create Answer Use Case", () => {
   });
 
   it("should be able to create an answer", async () => {
-    const { answer } = await sut.execute({
+    const { value } = await sut.execute({
       content: "New Content",
       instructorId: "1",
       questionId: "2",
     });
 
-    expect(answer.id).toBeTruthy();
-    expect(inMemoryAnswersRepository.answers[0].id).toEqual(answer.id);
+    expect(value?.answer.id).toBeTruthy();
+    expect(inMemoryAnswersRepository.answers[0].id).toEqual(value?.answer.id);
   });
 });

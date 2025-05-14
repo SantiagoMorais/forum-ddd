@@ -1,4 +1,5 @@
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
+import { Either } from "../either";
 
 export interface IAnswerQuestionUseCaseRequest {
   instructorId: string;
@@ -6,6 +7,9 @@ export interface IAnswerQuestionUseCaseRequest {
   content: string;
 }
 
-export interface IAnswerQuestionUseCaseResponse {
-  answer: Answer;
-}
+export type IAnswerQuestionUseCaseResponse = Either<
+  null,
+  {
+    answer: Answer;
+  }
+>;
