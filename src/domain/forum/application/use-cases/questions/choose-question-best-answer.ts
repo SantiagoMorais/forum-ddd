@@ -22,7 +22,7 @@ export class ChooseQuestionBestAnswerUseCase {
       answer.questionId.toValue()
     );
     if (!question) throw new Error("Question not found.");
-    
+
     if (questionAuthorId !== question.authorId.toValue())
       throw new Error("Not allowed.");
 
