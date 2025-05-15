@@ -4,6 +4,7 @@ import { IQuestionProps } from "@/core/interfaces/question-props";
 import { Optional } from "@/core/types/optional";
 import dayjs from "dayjs";
 import { Slug } from "./value-objects/slug";
+import { QuestionAttachment } from "./question-attachment";
 
 export class Question extends AggregateRoot<IQuestionProps> {
   get content() {
@@ -34,6 +35,10 @@ export class Question extends AggregateRoot<IQuestionProps> {
     return this.props.slug;
   }
 
+  get attachments() {
+    return this.props.attachments;
+  }
+
   get isNew(): boolean {
     return dayjs().diff(this.createdAt, "days") <= 3; // verify if the question was created at most in three days.
   }
@@ -62,14 +67,19 @@ export class Question extends AggregateRoot<IQuestionProps> {
     this.touch();
   }
 
+  set attachments(attachments: Array<QuestionAttachment>) {
+    this.props.attachments = attachments;
+  }
+
   static create(
-    props: Optional<IQuestionProps, "createdAt" | "slug">,
+    props: Optional<IQuestionProps, "createdAt" | "slug" | "attachments">,
     id?: UniqueEntityId
   ) {
     const question = new Question(
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.title),
+        attachments: props.attachments ?? [],
         createdAt: props.createdAt ?? new Date(),
       },
       id
