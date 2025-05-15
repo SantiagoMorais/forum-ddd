@@ -7,6 +7,7 @@ import { QuestionsRepository } from "../../repositories/questions-repository";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { right } from "@/core/either";
 import { QuestionAttachment } from "@/domain/forum/enterprise/entities/question-attachment";
+import { QuestionAttachmentList } from "@/domain/forum/enterprise/entities/question-attachment-list";
 
 export class CreateQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -30,7 +31,7 @@ export class CreateQuestionUseCase {
       });
     });
 
-    question.attachments = questionAttachments;
+    question.attachments = new QuestionAttachmentList(questionAttachments);
 
     await this.questionsRepository.create(question);
     return right({ question });

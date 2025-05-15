@@ -8,6 +8,7 @@ export interface IEditQuestionUseCaseRequest {
   questionId: string;
   title: string;
   content: string;
+  attachmentsIds: Array<string>;
 }
 
 export type IEditQuestionUseCaseResponse = Either<
