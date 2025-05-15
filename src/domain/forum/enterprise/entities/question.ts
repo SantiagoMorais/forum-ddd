@@ -1,11 +1,11 @@
-import { Entity } from "@/core/entities/entity";
+import { AggregateRoot } from "@/core/entities/aggregate-root";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { IQuestionProps } from "@/core/interfaces/question-props";
 import { Optional } from "@/core/types/optional";
 import dayjs from "dayjs";
 import { Slug } from "./value-objects/slug";
 
-export class Question extends Entity<IQuestionProps> {
+export class Question extends AggregateRoot<IQuestionProps> {
   get content() {
     return this.props.content;
   }
