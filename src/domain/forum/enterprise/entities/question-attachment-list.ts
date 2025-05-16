@@ -6,6 +6,6 @@ export class QuestionAttachmentList extends WatchedList<IQuestionAttachmentProps
     a: IQuestionAttachmentProps,
     b: IQuestionAttachmentProps
   ): boolean {
-    return a.attachmentId === b.attachmentId;
+    return a.attachmentId.equals(b.attachmentId);
   }
 }
