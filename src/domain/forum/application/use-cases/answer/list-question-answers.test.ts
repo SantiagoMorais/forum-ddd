@@ -2,13 +2,19 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "@test/factories/make-answer";
 import { InMemoryAnswersRepository } from "@test/repositories/in-memory-answers-repository";
 import { ListQuestionAnswersUseCase } from "./list-question-answers";
+import { InMemoryAnswerAttachmentsRepository } from "@test/repositories/in-memory-answer-attachments-repository copy";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let sut: ListQuestionAnswersUseCase;
 
 describe("List Question Answers Use Case", () => {
   beforeEach(() => {
-    inMemoryAnswersRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository();
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository
+    );
     sut = new ListQuestionAnswersUseCase(inMemoryAnswersRepository);
   });
 

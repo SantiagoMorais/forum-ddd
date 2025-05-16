@@ -7,6 +7,7 @@ export interface IEditAnswerUseCaseRequest {
   authorId: string;
   answerId: string;
   content: string;
+  attachmentsIds: string[];
 }
 
 export type IEditAnswerUseCaseResponse = Either<
