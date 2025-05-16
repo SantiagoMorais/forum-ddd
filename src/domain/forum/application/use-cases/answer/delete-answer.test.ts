@@ -5,15 +5,22 @@ import { makeAnswer } from "@test/factories/make-answer";
 import { InMemoryQuestionsRepository } from "@test/repositories/in-memory-questions-repository";
 import { DeleteAnswerUseCase } from "./delete-answer";
 import { NotAllowedError } from "../errors/not-allowed-error";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachment-repository";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let sut: DeleteAnswerUseCase;
 
 describe("Delete Answer Use Case", () => {
   beforeEach(() => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository();
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
+    inMemoryQuestionAttachmentsRepository =
+      new InMemoryQuestionAttachmentsRepository();
+
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository
+    );
     sut = new DeleteAnswerUseCase(inMemoryAnswersRepository);
   });
 
