@@ -1,7 +1,7 @@
 import { makeQuestion } from "@test/factories/make-question";
 import { InMemoryQuestionsRepository } from "@test/repositories/in-memory-questions-repository";
 import { ListRecentQuestionsUseCase } from "./list-recent-questions";
-import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachment-repository";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachments-repository";
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
