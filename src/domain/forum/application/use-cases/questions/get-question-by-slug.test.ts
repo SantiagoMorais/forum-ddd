@@ -27,9 +27,10 @@ describe("Get Question By Slug Use Case", () => {
 
     const result = await sut.execute({ slug: "example-question" });
 
-    if (result.isRight()) {
-      expect(result.value.question.id).toBeTruthy();
-      expect(result.value.question.content).toEqual(newQuestion.content);
-    }
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({
+        title: newQuestion.title,
+      }),
+    });
   });
 });
