@@ -4,8 +4,8 @@ import {
 } from "@/core/interfaces/delete-answer-use-case";
 import { AnswersRepository } from "../../repositories/answers-repository";
 import { left, right } from "@/core/either";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../../../core/errors/resource-not-found-error";
+import { NotAllowedError } from "../../../../../core/errors/not-allowed-error";
 
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}

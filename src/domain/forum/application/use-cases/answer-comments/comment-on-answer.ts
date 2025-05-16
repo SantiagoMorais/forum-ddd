@@ -7,7 +7,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { AnswersRepository } from "../../repositories/answers-repository";
 import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment";
 import { left, right } from "@/core/either";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../../../core/errors/resource-not-found-error";
 
 export class CommentOnAnswerUseCase {
   constructor(

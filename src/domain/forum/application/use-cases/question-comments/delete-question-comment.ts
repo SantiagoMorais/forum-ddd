@@ -3,9 +3,9 @@ import {
   IDeleteQuestionCommentUseCaseResponse,
 } from "@/core/interfaces/delete-question-comment-use-case";
 import { QuestionCommentsRepository } from "../../repositories/question-comments-repository";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../../../core/errors/resource-not-found-error";
 import { left, right } from "@/core/either";
-import { NotAllowedError } from "../errors/not-allowed-error";
+import { NotAllowedError } from "../../../../../core/errors/not-allowed-error";
 
 export class DeleteQuestionCommentUseCase {
   constructor(private questionCommentsRepository: QuestionCommentsRepository) {}

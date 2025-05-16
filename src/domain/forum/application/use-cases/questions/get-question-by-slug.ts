@@ -4,7 +4,7 @@ import {
   IGetQuestionBySlugUseCaseResponse,
 } from "@/core/interfaces/get-question-by-slug-use-case";
 import { QuestionsRepository } from "../../repositories/questions-repository";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../../../core/errors/resource-not-found-error";
 
 export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
